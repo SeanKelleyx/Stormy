@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var precipLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var loadingView: UIView!
     
     private let apiKey = "4a7a86784dd76767baf4435021887aa1"
 
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
                     let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as NSDictionary
                     let currentWeather = Current(weatherDictionary: weatherDictionary)
                     self.loadCurrentToScreen(currentWeather)
+                    self.loadingView.removeFromSuperview()
                 }
         })
         downloadTask.resume()
