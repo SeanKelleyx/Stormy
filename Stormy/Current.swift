@@ -10,19 +10,21 @@ import Foundation
 import UIKit
 
 struct Current {
-    var currentTime: String?
     var temperature: Int
     var humidity: Double
     var precipProbability: Double
     var summary: String
+    var location: String
+    var currentTime: String?
     var icon: UIImage?
     
-    init(weatherDictionary: NSDictionary){
+    init(weatherDictionary: NSDictionary, locationString: String){
         let currentWeather = weatherDictionary["currently"] as NSDictionary        
         temperature = currentWeather["temperature"] as Int
         humidity = currentWeather["humidity"] as Double
         precipProbability = currentWeather["precipProbability"] as Double
         summary = currentWeather["summary"] as String
+        location = locationString
         icon = weatherIconFromString(currentWeather["icon"] as String)
         currentTime = dateStringFromUnixTime(currentWeather["time"] as Int)
     }
