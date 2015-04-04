@@ -11,6 +11,7 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
+    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -18,11 +19,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var precipLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
     
     let locationManager = CLLocationManager()
+    var firstRun : Bool = true
     private let apiKey = "4a7a86784dd76767baf4435021887aa1"
 
     override func viewDidLoad() {
@@ -41,9 +42,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        
-        println(manager.location.coordinate.latitude)
-        println(manager.location.coordinate.longitude)
         
         var latLongString = "\(manager.location.coordinate.latitude),\(manager.location.coordinate.longitude)"
         
@@ -71,7 +69,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func setCityName(placemark: CLPlacemark, locationCoords: String){
         self.locationManager.stopUpdatingLocation()
         getCurrentWeatherData(locationCoords, locationText: placemark.locality)
-        println(placemark.locality)
     }
     
     func getCurrentWeatherData(locationCoords: String, locationText: String){
@@ -93,6 +90,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         self.humidityLabel.text = "\(Int(currentWeather.humidity * 100))%"
                         self.precipLabel.text = "\(Int(currentWeather.precipProbability * 100))%"
                         self.descriptionLabel.text = currentWeather.summary
+                        self.clearLoading()
                         self.refreshActivityIndicator.stopAnimating()
                         self.refreshActivityIndicator.hidden = true
                         self.refreshButton.hidden = false
@@ -114,12 +112,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         downloadTask.resume()
     }
     
+    func clearLoading(){
+        if firstRun{
+            firstRun = false
+            loadingView.removeFromSuperview()
+        }
+    }
+    
     @IBAction func refresh() {
         refreshButton.hidden = true
         refreshActivityIndicator.hidden = false
         refreshActivityIndicator.startAnimating()
-        //getCurrentWeatherData()
-        //getLocationInfo()
         self.locationManager.startUpdatingLocation() 
     }
 

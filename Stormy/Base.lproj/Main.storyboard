@@ -87,6 +87,32 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="degree" translatesAutoresizingMaskIntoConstraints="NO" id="6XJ-dR-lsP">
                                 <rect key="frame" x="276" y="206" width="36" height="36"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGa-36-4ic">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading current weather for your location..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REv-hR-yr7">
+                                        <rect key="frame" x="30" y="144" width="260" height="55"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rain" translatesAutoresizingMaskIntoConstraints="NO" id="wpM-Yk-Vi1">
+                                        <rect key="frame" x="130" y="236" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="UJ9-Ly-m7U"/>
+                                            <constraint firstAttribute="height" constant="60" id="Y5N-nv-MLI"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="REv-hR-yr7" secondAttribute="trailing" constant="30" id="IqO-1g-Imi"/>
+                                    <constraint firstItem="wpM-Yk-Vi1" firstAttribute="top" secondItem="REv-hR-yr7" secondAttribute="bottom" constant="37" id="KDE-jo-16a"/>
+                                    <constraint firstItem="REv-hR-yr7" firstAttribute="leading" secondItem="iGa-36-4ic" secondAttribute="leading" constant="30" id="a4W-a4-Zd6"/>
+                                    <constraint firstAttribute="centerX" secondItem="wpM-Yk-Vi1" secondAttribute="centerX" id="cj4-gT-KdD"/>
+                                    <constraint firstItem="REv-hR-yr7" firstAttribute="top" secondItem="iGa-36-4ic" secondAttribute="top" constant="144" id="vP6-js-7lr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.29019607843137257" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -106,11 +132,15 @@
                             <constraint firstItem="6XJ-dR-lsP" firstAttribute="leading" secondItem="mKp-ZI-RWt" secondAttribute="trailing" constant="-10" id="QHy-YP-aFD"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="SO1-yK-Wi5" secondAttribute="bottom" constant="177" id="QIv-47-hYF"/>
                             <constraint firstAttribute="centerX" secondItem="Ote-8h-5lW" secondAttribute="centerX" constant="-0.5" id="Rqr-3i-slk"/>
+                            <constraint firstAttribute="trailing" secondItem="iGa-36-4ic" secondAttribute="trailing" id="Xbi-Yh-bIx"/>
+                            <constraint firstItem="iGa-36-4ic" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Xgb-Af-5gQ"/>
                             <constraint firstItem="QVo-VL-liE" firstAttribute="top" secondItem="SO1-yK-Wi5" secondAttribute="bottom" constant="10" id="YgI-w1-mMz"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="iGa-36-4ic" secondAttribute="bottom" id="dRf-Ck-YyR"/>
                             <constraint firstItem="mKp-ZI-RWt" firstAttribute="top" secondItem="6aK-5d-Ldc" secondAttribute="bottom" constant="-17" id="e76-Ua-9fa"/>
                             <constraint firstAttribute="centerX" secondItem="sBE-Ti-cyt" secondAttribute="centerX" id="fPe-yi-sja"/>
                             <constraint firstItem="whw-m4-nBz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="89" id="gjp-8x-8bn"/>
                             <constraint firstItem="mKp-ZI-RWt" firstAttribute="top" secondItem="6XJ-dR-lsP" secondAttribute="bottom" constant="-44" id="nJl-ax-3wa"/>
+                            <constraint firstItem="iGa-36-4ic" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="sbc-YD-u9w"/>
                             <constraint firstAttribute="centerX" secondItem="mKp-ZI-RWt" secondAttribute="centerX" constant="-0.5" id="t6P-K0-oLc"/>
                             <constraint firstItem="SO1-yK-Wi5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="40" id="xOZ-z4-dyJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OyF-m6-xTL" secondAttribute="trailing" constant="40" id="ykH-4T-3KL"/>
@@ -120,6 +150,7 @@
                         <outlet property="descriptionLabel" destination="Ote-8h-5lW" id="Xtg-Kc-AQN"/>
                         <outlet property="humidityLabel" destination="QVo-VL-liE" id="BPc-og-xWf"/>
                         <outlet property="iconImage" destination="IK0-hI-tX1" id="0dp-D1-xIO"/>
+                        <outlet property="loadingView" destination="iGa-36-4ic" id="JJq-xj-BEX"/>
                         <outlet property="locationLabel" destination="whw-m4-nBz" id="RxY-8a-dan"/>
                         <outlet property="precipLabel" destination="7bq-VN-oC2" id="bdf-Vv-Jvu"/>
                         <outlet property="refreshActivityIndicator" destination="Xq2-Fa-e4S" id="JEL-ge-BF9"/>
@@ -136,6 +167,7 @@
     <resources>
         <image name="cloudy-night" width="46" height="43"/>
         <image name="degree" width="36" height="36"/>
+        <image name="rain" width="46" height="35"/>
         <image name="refresh" width="43" height="43"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
